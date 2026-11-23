@@ -149,6 +149,21 @@ describe('describeRequestFailure', () => {
     expect(message).toMatch(/paused Supabase project/)
   })
 
+  it('falls back to the inner errors when every connection attempt failed', () => {
+    // Node's happy-eyeballs connect: an AggregateError with an empty message.
+    const cause = Object.assign(
+      new AggregateError([new Error('connect ECONNREFUSED 10.0.0.1:443')], ''),
+      { code: 'ECONNREFUSED' }
+    )
+    const message = describeRequestFailure(
+      'staging',
+      'read schema',
+      'https://staging-ref.supabase.co/rest/v1/',
+      new TypeError('fetch failed', { cause })
+    )
+    expect(message).toContain('ECONNREFUSED: connect ECONNREFUSED 10.0.0.1:443')
+  })
+
   it('still says something useful when there is no cause', () => {
     const message = describeRequestFailure(
       'staging',
@@ -156,6 +171,7 @@ describe('describeRequestFailure', () => {
       'not a url',
       new Error('boom')
     )
-    expect(message).toBe('staging write otf_sessions: could not reach not a url (boom)')
+    // No network code means nothing was necessarily sent, so no "could not reach".
+    expect(message).toBe('staging write otf_sessions: request to not a url failed (boom)')
   })
 })

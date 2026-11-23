@@ -92,16 +92,28 @@ export function describeRequestFailure(side, step, url, err) {
     cause && typeof cause === 'object' && 'code' in cause && typeof cause.code === 'string'
       ? cause.code
       : undefined
+  // Node's happy-eyeballs connect puts an AggregateError with an empty message
+  // on `cause` when every address fails; its inner errors carry the detail.
+  const inner =
+    cause && typeof cause === 'object' && 'errors' in cause && Array.isArray(cause.errors)
+      ? cause.errors.map(e => (e instanceof Error ? e.message : String(e))).join('; ')
+      : ''
   const detail =
-    cause instanceof Error ? cause.message : err instanceof Error ? err.message : String(err)
-  let message = `${side} ${step}: could not reach ${host} (${code ? `${code}: ` : ''}${detail})`
+    (cause instanceof Error && cause.message) ||
+    inner ||
+    (err instanceof Error ? err.message : String(err))
+  // Without a network code nothing was necessarily sent: a malformed header
+  // (a secret pasted with a trailing newline) rejects before any connection.
+  // Don't send the reader off checking DNS for that.
+  if (!code) return `${side} ${step}: request to ${host} failed (${detail})`
+  let message = `${side} ${step}: could not reach ${host} (${code}: ${detail})`
   if (code && UNREACHABLE_CODES.has(code)) {
     message +=
       side === 'staging'
         ? ' — the staging host does not answer. A paused Supabase project loses its DNS record:' +
           ' check the project status in the Supabase dashboard before debugging anything else.'
-        : ' — the production host does not answer. Check the PROD_SUPABASE_URL secret and the' +
-          ' project status in the Supabase dashboard.'
+        : ' — the production host does not answer. Check PROD_SUPABASE_URL (the' +
+          ' NEXT_PUBLIC_SUPABASE_URL secret in CI) and the project status in the Supabase dashboard.'
   }
   return message
 }
@@ -387,12 +399,18 @@ async function copyTable({ name, conflict, mode, key }, allowed) {
  * the run's summary page instead of only deep in the step log.
  *
  * @param {string} message
+ * @param {string} [what] Which operation failed, for the prefix and the
+ *   annotation title. The keepalive passes its own so its failures don't read
+ *   as a failed sync.
  */
-function reportFatal(message) {
-  console.error(`✗ staging sync: ${message}`)
+function reportFatal(message, what = 'staging sync') {
+  console.error(`✗ ${what}: ${message}`)
   if (process.env.GITHUB_ACTIONS === 'true') {
-    // Workflow commands end at a newline, so flatten the message onto one line.
-    console.log(`::error title=Staging sync failed::${message.replace(/[\r\n]+/g, ' ')}`)
+    // Escape the way @actions/core does: the runner decodes %25, %0D and %0A
+    // in a workflow command, so a raw % in a PostgREST body would garble it.
+    const escaped = message.replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A')
+    const title = what.charAt(0).toUpperCase() + what.slice(1)
+    console.log(`::error title=${title} failed::${escaped}`)
   }
 }
 
@@ -437,11 +455,19 @@ async function keepalive() {
 async function main() {
   if (process.argv.includes('--keepalive')) {
     if (!STAGING_URL || !STAGING_KEY) {
-      reportFatal('missing STAGING_SUPABASE_URL or STAGING_SUPABASE_SECRET_KEY')
+      reportFatal(
+        'missing STAGING_SUPABASE_URL or STAGING_SUPABASE_SECRET_KEY',
+        'staging keepalive'
+      )
       process.exitCode = 2
       return
     }
-    await keepalive()
+    try {
+      await keepalive()
+    } catch (err) {
+      reportFatal(err instanceof Error ? err.message : String(err), 'staging keepalive')
+      process.exitCode = 2
+    }
     return
   }
 

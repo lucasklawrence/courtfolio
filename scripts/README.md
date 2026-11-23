@@ -407,6 +407,8 @@ In GitHub Actions the same line is also emitted as an `::error` annotation, so i
 
 Staging is on Supabase's Free plan, which pauses a project after seven days without enough database activity. A weekly sync is one day of activity a week, and that is not enough. Staging was paused on 2026-08-23, seven days after the last successful sync on 2026-08-16 (#478). A paused project can be resumed from the dashboard for 90 days. After that, only its backup can be downloaded. The daily read keeps the project active. The alternative is a paid plan, which is never paused.
 
+One limit: GitHub disables scheduled workflows in a public repo after 60 days without repository activity. A quiet stretch that long would stop the keepalive too, and staging would pause a week later with no failed run to point at it. Any push re-enables the schedules.
+
 ### Writing a migration
 
 1. Write the file first, `<version>_<name>.sql`. The `<name>` must match the name you apply it under — it's the only key tying the file to the ledger.
