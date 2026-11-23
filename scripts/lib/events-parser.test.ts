@@ -129,7 +129,59 @@ describe('platformForSender / classifyEmail', () => {
     ).toMatchObject({ kind: 'transfer_out', counterpart: 'Pat' })
     expect(cleanEmailText('<p>You’re</p>')).toBe("¶ You're ¶")
     expect(classifyEmail(tm, 'Event Reminder: Hawks vs. Rockets')).toBe('reminder')
-    expect(classifyEmail(tm, 'Your password has been updated')).toBe('unrecognized')
+    expect(classifyEmail(tm, 'Your Weekly Picks')).toBe('unrecognized')
+  })
+
+  it('reads every transfer wording seen, both directions', () => {
+    const tm = PLATFORMS.find(p => p.id === 'ticketmaster')!
+    for (const subject of [
+      'Jordan Lee has transferred you ticket(s) for Harbor City Hawks vs. Riverside Rockets',
+      'Jordan transferred you 2 tickets',
+      "You've received tickets from Jordan",
+      'Your Ticket Transfer From Jordan Is Ready To Be Accepted',
+    ]) {
+      expect(classifyEmail(tm, subject), subject).toBe('transfer_in')
+    }
+    for (const subject of [
+      'Your Ticket Has Been Accepted by Pat',
+      'Your ticket has been accepted by Pat Kim for Harbor City Hawks vs. Riverside Rockets',
+      'Your Ticket Transfer Went Through',
+    ]) {
+      expect(classifyEmail(tm, subject), subject).toBe('transfer_out')
+    }
+  })
+
+  it('files account mail as a notice on every platform, so it stays off the review list', () => {
+    for (const p of PLATFORMS) {
+      expect(classifyEmail(p, 'Your password has been updated')).toBe('notice')
+      expect(classifyEmail(p, 'Your authentication code')).toBe('notice')
+    }
+    // An event whose title happens to hold an account word is still an event.
+    const eb = PLATFORMS.find(p => p.id === 'eventbrite')!
+    expect(classifyEmail(eb, 'Order confirmation for Password Security Workshop')).toBe('purchase')
+  })
+
+  it('reads a Gametime "Order Confirmation - <Event> @ <Venue>" subject as a purchase', () => {
+    const gt = PLATFORMS.find(p => p.id === 'gametime')!
+    expect(classifyEmail(gt, 'Order Confirmation - Rockets @ Hawks @ Example Arena on 3/14')).toBe(
+      'purchase'
+    )
+    // With no order block in the body, the title comes from the subject, venue dropped.
+    const p = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Order Confirmation - Rockets @ Hawks @ Example Arena on 3/14',
+      html: html(row('Thanks for your order')),
+      receivedAt: MAR_2026,
+    })
+    expect(p).toMatchObject({ kind: 'purchase', title: 'Rockets @ Hawks' })
+    // A single "@" is the matchup, not a venue.
+    const single = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Order Confirmation - Rockets @ Hawks on 3/14',
+      html: html(row('Thanks for your order')),
+      receivedAt: MAR_2026,
+    })
+    expect(single?.title).toBe('Rockets @ Hawks')
   })
 
   it('builds one query per platform over its senders and extra clause', () => {
@@ -384,11 +436,274 @@ describe('parseEventEmail', () => {
     expect(
       parseEventEmail({
         from: 'noreply@ticketmaster.com',
-        subject: 'Your password was changed',
+        subject: 'Your weekly picks',
         html: '',
         receivedAt: MAR_2026,
       })
     ).toMatchObject({ kind: 'unrecognized', confidence: 0, note: 'no subject rule matched' })
+  })
+
+  it('reads a "has transferred you" email: the sender, the title and the count', () => {
+    const p = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject:
+        'Jordan Lee has transferred you ticket(s) for Harbor City Hawks vs. Riverside Rockets',
+      html: html(
+        row('Harbor City Hawks vs. Riverside Rockets'),
+        row('Sat, Mar 14 @ 6:40 PM'),
+        row('Example Arena, Springfield, CA'),
+        row('Jordan Lee has transferred you 2 tickets.')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p).toMatchObject({
+      kind: 'transfer_in',
+      counterpart: 'Jordan Lee',
+      title: 'Harbor City Hawks vs. Riverside Rockets',
+      ticketCount: 2,
+      venue: 'Example Arena',
+    })
+  })
+
+  it('reads the recipient of a transfer-accepted notice', () => {
+    const p = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject:
+        'Your ticket has been accepted by Pat Kim for Harbor City Hawks vs. Riverside Rockets',
+      html: html(
+        row('Harbor City Hawks vs. Riverside Rockets'),
+        row('Sat, Mar 14 @ 6:40 PM'),
+        row('Example Arena, Springfield, CA')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p).toMatchObject({ kind: 'transfer_out', counterpart: 'Pat Kim' })
+  })
+
+  it('anchors a body sender name to its own sentence, whatever precedes it', () => {
+    const read = (greeting: string[]) =>
+      parseEventEmail({
+        from: 'noreply@ticketmaster.com',
+        // The subject names nobody, so the body is read.
+        subject: "You've received tickets from a friend",
+        html: html(
+          ...greeting.map(g => row(g)),
+          row('Harbor City Hawks vs Riverside Rockets'),
+          row('Thu &bull; Sep 3, 2026 &bull; 07:00 PM')
+        ),
+        receivedAt: AUG_2026,
+      })?.counterpart
+    expect(read(['Hi Sam,', 'Great news! Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Hi Sam, Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Hello again. Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Hey there Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Exciting news for this weekend Jordan Lee has transferred you 2 tickets'])).toBe(
+      'Jordan Lee'
+    )
+  })
+
+  it('reads the same full recipient name from the subject and from the body', () => {
+    const read = (subject: string, body: string) =>
+      parseEventEmail({
+        from: 'customer_support@email.ticketmaster.com',
+        subject,
+        html: html(
+          row(body),
+          row('Harbor City Hawks vs. Riverside Rockets'),
+          row('Sat, Mar 14 @ 6:40 PM')
+        ),
+        receivedAt: MAR_2026,
+      })?.counterpart
+    // One hand-off's emails must share a counterpart, or the view counts them twice.
+    expect(
+      read("You've transferred your tickets", 'You transferred 2 tickets to Pat Alex Kim.')
+    ).toBe('Pat Alex Kim')
+    expect(read('Your tickets have been accepted by Pat Alex Kim for Hawks', 'All done')).toBe(
+      'Pat Alex Kim'
+    )
+  })
+
+  it('never reads "Go to My Account" as a transfer recipient', () => {
+    const p = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject: "You've transferred your tickets",
+      html: html(
+        row('Your tickets were transferred. Go to My Account to see them.'),
+        row('Harbor City Hawks vs. Riverside Rockets'),
+        row('Sat, Mar 14 @ 6:40 PM')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p).toMatchObject({ kind: 'transfer_out', counterpart: null })
+  })
+
+  it('sums several Ticketmaster ticket types once each, and ignores promo multipliers', () => {
+    const p = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject: 'You got tickets to An Evening of Examples',
+      html: html(
+        row('Earn 3x Points on your next order'),
+        row('ORDER # 9-99999/ABC'),
+        row('An Evening of Examples'),
+        row('Fri &middot; Feb 12, 2027 &middot; 7:00 PM'),
+        row('Sample Hall - Lakeside, CA'),
+        row('Order Summary Your Tickets'),
+        row('2x Standard Admission'),
+        row('1x Accessible Seating'),
+        // The desktop copy of the same summary.
+        row('2x Standard Admission'),
+        row('1x Accessible Seating'),
+        row('Payment Summary Total $120.00'),
+        row('Earn 5x Points when you pay with the card')
+      ),
+      receivedAt: new Date('2026-11-05T03:00:00Z'),
+    })
+    expect(p?.ticketCount).toBe(3)
+    const promoOnly = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject: 'You got tickets to An Evening of Examples',
+      html: html(
+        row('Earn 2x Points with your card'),
+        row('An Evening of Examples'),
+        row('Fri &middot; Feb 12, 2027 &middot; 7:00 PM'),
+        row('You got 4 tickets')
+      ),
+      receivedAt: new Date('2026-11-05T03:00:00Z'),
+    })
+    expect(promoOnly?.ticketCount).toBe(4)
+  })
+
+  it('counts a seat once when one copy drops the section', () => {
+    const p = parseEventEmail({
+      from: 'noreply@ticketmaster.com',
+      subject: 'Jordan Just Sent You Hawks Tickets',
+      html: html(
+        row('Harbor City Hawks vs Riverside Rockets'),
+        row('Thu &bull; Sep 3, 2026 &bull; 07:00 PM'),
+        row('Sec 101, Row 5, Seat 3'),
+        row('Sec 101, Row 5, Seat 4'),
+        row('Row 5, Seat 3'),
+        row('Row 5, Seat 4'),
+        // The same row and seat in another section is another seat.
+        row('Sec 102, Row 5, Seat 3')
+      ),
+      receivedAt: AUG_2026,
+    })
+    expect(p?.ticketCount).toBe(3)
+  })
+
+  it('never reads running copy ("10 Tickets left") as a Gametime count', () => {
+    const p = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Your Ticket Order - Rockets @ Hawks on 3/14',
+      html: html(
+        row('Only 10 Tickets left for the next game!'),
+        row('Order Details Order #'),
+        row('ZQ7TEST123'),
+        row('Riverside Rockets at Harbor City Hawks'),
+        row('Saturday, March 14, 6:40pm'),
+        row('Example Arena'),
+        row('Springfield,'),
+        row('CA')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p?.ticketCount).toBeNull()
+  })
+
+  it('reads a Gametime count labelled "Ticket(s)"', () => {
+    const p = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Your Ticket Order - Rockets @ Hawks on 3/14',
+      html: html(
+        row('Order Details Order #'),
+        row('ZQ7TEST123'),
+        row('Rockets at Hawks'),
+        row('2'),
+        row('Ticket(s)')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p?.ticketCount).toBe(2)
+  })
+
+  it('takes the title from before the date when the time sits in its own cell', () => {
+    const p = parseEventEmail({
+      from: 'noreply@ticketmaster.com',
+      subject: 'Jordan Just Sent You 2 Hawks Tickets',
+      html: html(
+        row('Harbor City Hawks vs Riverside Rockets'),
+        row('Sat, Mar 14'),
+        row('6:40 PM'),
+        row('Example Arena, Springfield, CA')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p).toMatchObject({
+      title: 'Harbor City Hawks vs Riverside Rockets',
+      when: { month: 3, day: 14, hour: 18, minute: 40 },
+    })
+  })
+
+  it('keeps a transfer that lands after the event in the year of the event', () => {
+    const p = parseEventEmail({
+      from: 'customer_support@email.ticketmaster.com',
+      subject: 'Your Ticket Has Been Accepted by Pat',
+      html: html(
+        row('Harbor City Hawks vs. Riverside Rockets'),
+        row('Sat, Mar 14 @ 6:40 PM'),
+        row('Example Arena, Springfield, CA')
+      ),
+      receivedAt: new Date('2026-03-20T18:00:00Z'),
+    })
+    expect(p?.when).toMatchObject({ year: 2026, month: 3, day: 14 })
+  })
+})
+
+describe('venues and states', () => {
+  it('keeps a hyphenated venue name whole', () => {
+    expect(findVenue(' ¶ Example-Name Arena, Springfield, CA ¶')).toEqual({
+      venue: 'Example-Name Arena',
+      city: 'Springfield',
+      state: 'CA',
+    })
+  })
+
+  it('accepts only real states, so a gate or a bare capitalised word is no state', () => {
+    expect(findVenue(' ¶ Example Arena, Bayside, Gate B ¶')).toEqual({
+      venue: null,
+      city: null,
+      state: null,
+    })
+    expect(findVenue(' ¶ Example Arena, Bayside, ZZ ¶').state).toBeNull()
+    // Outside the US: the venue and city still read, with no state.
+    expect(findVenue(' ¶ Example Arena - Lakeview, ON ¶')).toEqual({
+      venue: 'Example Arena',
+      city: 'Lakeview',
+      state: null,
+    })
+    expect(findVenue(' ¶ Example Arena, Bayside, New Hampshire ¶').state).toBe('NH')
+  })
+})
+
+describe('resolveEventDate (mayArriveLate)', () => {
+  const late = { mayArriveLate: true }
+  const when = { year: null, month: 1, day: 5, hour: 19, minute: 0 }
+
+  it('takes a recent past occurrence, across a year boundary', () => {
+    expect(
+      resolveEventDate({ ...when, month: 12, day: 28 }, new Date('2027-01-03T00:00:00Z'), late).year
+    ).toBe(2026)
+  })
+
+  it('keeps the next occurrence for an email sent ahead of the event', () => {
+    expect(resolveEventDate(when, new Date('2026-12-20T00:00:00Z'), late).year).toBe(2027)
+    // Months ahead: last year's same date is too old to be a late arrival, so a
+    // delivery notice and its purchase still land on one date.
+    const oct9 = { ...when, month: 10, day: 9 }
+    const received = new Date('2026-03-01T18:00:00Z')
+    expect(resolveEventDate(oct9, received, late).year).toBe(2026)
+    expect(resolveEventDate(oct9, received).year).toBe(2026)
   })
 })
 
@@ -443,5 +758,42 @@ describe('matching', () => {
     expect(inferCategory('Night at the Example Museum')).toEqual({ category: 'other', teams: null })
     expect(inferCategory('Live at Sample Hall')).toEqual({ category: 'other', teams: null })
     expect(inferCategory('Rockets @ Hawks').category).toBe('sports')
+  })
+
+  it('reads a place after "@" or " at " as a show, not a matchup', () => {
+    expect(inferCategory('Comedy Night @ The Improv')).toEqual({ category: 'show', teams: null })
+    expect(inferCategory('Example Band at Sample Bowl')).toEqual({ category: 'other', teams: null })
+    // The email's own venue gives the place away even without a venue word.
+    expect(inferCategory('Example Band at Sample Spot', 'Sample Spot')).toEqual({
+      category: 'other',
+      teams: null,
+    })
+    expect(inferCategory('Example Band World Tour at Sample Bowl').category).toBe('concert')
+    // A home team that starts the venue's name is still a team.
+    expect(inferCategory('Example State at Lakeside Tech', 'Lakeside Tech Stadium').category).toBe(
+      'sports'
+    )
+  })
+
+  it('keeps a round or event-type label out of the team names', () => {
+    expect(inferCategory('Round 1: Riverside Rockets at Harbor City Hawks: Game 3')).toEqual({
+      category: 'sports',
+      teams: ['Riverside Rockets', 'Harbor City Hawks'],
+    })
+    expect(inferCategory('Preseason - Riverside Rockets at Harbor City Hawks').teams).toEqual([
+      'Riverside Rockets',
+      'Harbor City Hawks',
+    ])
+  })
+
+  it('recognises concerts and stage shows by their words', () => {
+    expect(inferCategory('An Evening with the Example Symphony').category).toBe('concert')
+    expect(inferCategory('Example Jazz Festival 2026').category).toBe('concert')
+    expect(inferCategory('Sample Players: A Musical').category).toBe('show')
+  })
+
+  it('folds accents, so accented and plain spellings match', () => {
+    expect(normalizeForMatch('Théâtre Exemple')).toBe(normalizeForMatch('Theatre Exemple'))
+    expect(normalizeForMatch('Théâtre Exemple')).toBe('theatreexemple')
   })
 })
