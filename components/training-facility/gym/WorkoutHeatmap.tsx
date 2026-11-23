@@ -127,14 +127,29 @@ export function WorkoutHeatmap({
     return () => ro.disconnect()
   }, [])
 
-  const computedCellSize =
-    cellSize ??
-    (containerWidth && cols > 0
-      ? Math.min(
-          MAX_CELL_SIZE,
-          Math.max(DEFAULT_CELL_SIZE, Math.floor((containerWidth - DAY_LABEL_WIDTH) / cols))
-        )
-      : DEFAULT_CELL_SIZE)
+  // A stride fitted to `width` px of grid, kept within the default and the cap.
+  const fitCellSize = (width: number) =>
+    Math.min(MAX_CELL_SIZE, Math.max(DEFAULT_CELL_SIZE, Math.floor(width / cols)))
+  // Labels for a stride: thinned so neighbours can't collide, plus how far the last
+  // one overhangs the grid's right edge.
+  const monthLayout = (stride: number) => {
+    const months = thinMonthLabels(monthLabels, { cellSize: stride, totalCols: cols })
+    const overhang = monthLabelOverhang(months, stride, cols * stride, MONTH_LABEL_FONT_SIZE)
+    return { visibleMonths: months, monthOverhang: overhang }
+  }
+
+  let computedCellSize = DEFAULT_CELL_SIZE
+  if (cellSize !== undefined) computedCellSize = cellSize
+  else if (containerWidth && cols > 0) {
+    computedCellSize = fitCellSize(containerWidth - DAY_LABEL_WIDTH)
+    // A month starting in the last column overhangs a fitted grid, so refit with
+    // room for it rather than spilling past the card into a scrollbar.
+    const { monthOverhang } = monthLayout(computedCellSize)
+    if (monthOverhang > 0) {
+      computedCellSize = fitCellSize(containerWidth - DAY_LABEL_WIDTH - Math.ceil(monthOverhang))
+    }
+  }
+  const { visibleMonths, monthOverhang } = monthLayout(computedCellSize)
   const cellInner = computedCellSize - cellGap
   const gridWidth = cols * computedCellSize
   const gridHeight = 7 * computedCellSize
@@ -142,18 +157,6 @@ export function WorkoutHeatmap({
   // from the same cell metrics as the legend itself so the legend doesn't
   // overflow the SVG when `computedCellSize` scales up to MAX_CELL_SIZE.
   const legendWidth = 32 + 4 * (computedCellSize + 1) + 4 + 28
-  // A short range can put two month boundaries a column apart, and its last
-  // label near the right edge, so thin the labels and reserve their overhang.
-  const visibleMonths = thinMonthLabels(monthLabels, {
-    cellSize: computedCellSize,
-    totalCols: cols,
-  })
-  const monthOverhang = monthLabelOverhang(
-    visibleMonths,
-    computedCellSize,
-    gridWidth,
-    MONTH_LABEL_FONT_SIZE
-  )
   // A grid narrower than the legend (a one- or two-week range) widens the SVG to
   // fit it rather than pushing "Less" off the left edge.
   const legendX = Math.max(0, DAY_LABEL_WIDTH + gridWidth - legendWidth)

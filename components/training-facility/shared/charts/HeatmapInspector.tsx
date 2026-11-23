@@ -19,6 +19,8 @@ export interface HeatmapInspectorProps {
   /**
    * The heatmap, including its horizontal scroller. Inspectable cells are
    * `<rect data-col data-row>` elements whose `<title>` holds the day's details.
+   * The grid must be gapless, one column per week with rows 0–6 running Monday
+   * to Sunday: the arrow keys and the day buttons step by that arithmetic.
    */
   children: ReactNode
   /** Accessible name for the focusable grid, e.g. `"Pushups heatmap"`. */
@@ -181,7 +183,15 @@ export function HeatmapInspector({
     const grid = gridRef.current
     if (grid === null) return
     const current = selectedRef.current
-    moveTo(current === null ? latestMonday(grid) : dayOffset(grid, current, days))
+    if (current !== null) {
+      moveTo(dayOffset(grid, current, days))
+      return
+    }
+    // Nothing selected yet: start from the latest Monday, as the arrow keys do,
+    // and step back from it, so a first "Previous week" lands on last week. Later
+    // days of this week may not have happened, so a forward step starts on it.
+    const start = latestMonday(grid)
+    moveTo(start === null || days > 0 ? start : dayOffset(grid, start, days))
   }
 
   // A null `relatedTarget` means focus went nowhere: a tap on the readout, or the

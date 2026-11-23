@@ -294,10 +294,16 @@ describe('HeatmapInspector', () => {
     }
   })
 
-  it("starts the day buttons on the last drawn week's Monday", () => {
+  it("starts a forward day button on the last drawn week's Monday", () => {
     renderInspector()
-    fireEvent.click(screen.getByRole('button', { name: /^Previous day/ }))
+    fireEvent.click(screen.getByRole('button', { name: /^Next day/ }))
     expect(readout()).toHaveTextContent(dayText(1, 0))
+  })
+
+  it("steps a first backward press back from the last drawn week's Monday", () => {
+    renderInspector()
+    fireEvent.click(screen.getByRole('button', { name: /^Previous week/ }))
+    expect(readout()).toHaveTextContent(dayText(0, 0))
   })
 
   it('steps by a day across the end of a week, and by a week', () => {

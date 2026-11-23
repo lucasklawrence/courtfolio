@@ -32,9 +32,11 @@ export interface GoalChangeMarkerProps {
    */
   labelPosition?: 'above' | 'below'
   /**
-   * The heatmap cell, as `{ col, row }`, that tapping the marker selects inside a
-   * `HeatmapInspector`, so touch readers can reach the change's date. Omit outside
-   * an inspector.
+   * The heatmap cell, as `{ col, row }`, that tapping or clicking the marker
+   * selects inside a `HeatmapInspector`, so a pointer user on a phone can read the
+   * change's date, which hover would otherwise be needed for. Screen readers can't
+   * reach the marker inside the chart's `role="img"`; they get the date from that
+   * cell's own details. Omit outside an inspector.
    */
   target?: { col: number; row: number }
 }
@@ -89,8 +91,8 @@ export function GoalChangeMarker({
         {formatGoalTargetChange(change)}
       </text>
       {/* Native tooltip carries the date, which the visible label omits to stay
-          narrow enough for a one-week column. Touch readers get it from the
-          target cell's details instead. */}
+          narrow enough for a one-week column. On touch, tapping the marker opens
+          the target cell, whose details name the change and its date. */}
       <title>{`Goal ${describeGoalTargetChange(change)}`}</title>
     </g>
   )

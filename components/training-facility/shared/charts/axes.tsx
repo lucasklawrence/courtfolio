@@ -12,10 +12,15 @@ export interface EmptyChartProps {
   height: number
   /** Text centred in the placeholder. Defaults to `"No data"`. */
   message?: string
+  /** Font family for the message. Defaults to `inherit`. */
   fontFamily?: string
+  /** Message fill color. Defaults to `#737373`. */
   color?: string
+  /** Classes applied to the `<svg>`. */
   className?: string
+  /** Accessible name. Defaults to {@link message}. Ignored when {@link ariaLabelledBy} is set. */
   ariaLabel?: string
+  /** Id of an element that names the chart. Suppresses the `<title>` and `aria-label`. */
   ariaLabelledBy?: string
 }
 
