@@ -331,7 +331,7 @@ Unattended crons write to production with nobody watching. Red runs have gone un
 
 ### Failures become one issue per job
 
-`otbeat-ingest`, `events-ingest` and `staging-sync` each end with an `alert` job. It runs `if: always()` after the work job, through the `.github/actions/ingest-alert` composite.
+`otbeat-ingest`, `events-ingest`, `staging-sync` and `staging-keepalive` each end with an `alert` job. It runs `if: always()` after the work job, through the `.github/actions/ingest-alert` composite.
 
 | work job result | open `ingest failure: <job>` issue? | what happens |
 |---|---|---|
