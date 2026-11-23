@@ -21,12 +21,13 @@ import { countedReps } from './set-reps'
  */
 
 /**
- * Pacific day key (`YYYY-MM-DD`) for an ISO timestamp string or a Date.
- * Strips off the time-of-day so two sets logged at 06:00 and 23:00 of
- * the same day collapse to the same key.
+ * Day key (`YYYY-MM-DD`) for an ISO timestamp string or a Date, in `clock`'s
+ * zone — Pacific unless a caller threads another clock through. Strips off the
+ * time-of-day so two sets logged at 06:00 and 23:00 of the same day collapse to
+ * the same key.
  *
  * Thin alias over {@link DayClock.safeDayKey}, kept because this is the name
- * the Today View surfaces import. New code should reach for `clock.ts`
+ * the Today and Log surfaces import. New code should reach for `clock.ts`
  * directly.
  *
  * @param input ISO 8601 timestamp string from
@@ -36,17 +37,17 @@ import { countedReps } from './set-reps'
  * @returns `YYYY-MM-DD`, or `''` when `input` is unparseable (so callers can
  *   use `key === ''` as a skip condition without throwing).
  */
-export function toLocalDateKey(input: string | Date, clock: DayClock = PACIFIC_CLOCK): string {
+export function toDayKey(input: string | Date, clock: DayClock = PACIFIC_CLOCK): string {
   return clock.safeDayKey(input)
 }
 
 /**
- * Filter `sets` down to those logged on a specific local-date key.
+ * Filter `sets` down to those logged on a specific day key.
  * Used by the Today View to slice the full sets array (which spans
  * the whole history) down to just today's logs without re-querying.
  *
  * @param sets All logged sets, usually `WeightRoomData.sets`.
- * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}.
+ * @param dayKey `YYYY-MM-DD` key as produced by {@link toDayKey}.
  *   Pass an empty string to get an empty array back (defensive — keeps
  *   callers from having to special-case unparseable "now" inputs).
  * @param clock Zone the day is measured in; defaults to Pacific (#429). Must
@@ -58,7 +59,7 @@ export function filterSetsForDay(
   clock: DayClock = PACIFIC_CLOCK
 ): StrengthSet[] {
   if (dayKey === '') return []
-  return sets.filter(s => toLocalDateKey(s.logged_at, clock) === dayKey)
+  return sets.filter(s => toDayKey(s.logged_at, clock) === dayKey)
 }
 
 /**
@@ -193,12 +194,12 @@ export function computeRingPercent(totalReps: number, goal: ExerciseGoal, dayKey
  * midnight boundary the way a 00:00 stamp would.
  *
  * Pacific noon rather than local noon (#319) so the write round-trips through
- * the read path: the set is bucketed back out with {@link toLocalDateKey},
+ * the read path: the set is bucketed back out with {@link toDayKey},
  * which is now Pacific. Stamping local noon from a non-Pacific browser could
  * land the set on the adjacent Pacific day — a backdated set appearing on the
  * wrong square.
  *
- * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}
+ * @param dayKey `YYYY-MM-DD` key as produced by {@link toDayKey}
  *   or an `<input type="date">` value.
  * @param clock Zone noon is measured in; defaults to Pacific (#429).
  * @returns ISO 8601 UTC timestamp of the day's noon, or `''` when `dayKey`
@@ -216,7 +217,7 @@ export function localNoonIsoForDay(dayKey: string, clock: DayClock = PACIFIC_CLO
  * omitted: the date input next to the label already shows it, and
  * backfills more than a few days old are rare.
  *
- * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}.
+ * @param dayKey `YYYY-MM-DD` key as produced by {@link toDayKey}.
  * @param clock Zone the label names the day in; defaults to Pacific (#429).
  * @returns Locale-formatted weekday + date, or `''` when `dayKey` is
  *   unparseable.

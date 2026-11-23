@@ -32,6 +32,24 @@ describe('RoughLine', () => {
     expect(screen.getByText('No data yet')).toBeInTheDocument()
   })
 
+  it('fits the EmptyChart placeholder to a container narrower than the chart', () => {
+    render(
+      <RoughLine
+        data={[] as Array<{ x: number; y: number }>}
+        x={d => d.x}
+        y={d => d.y}
+        width={400}
+        height={200}
+        ariaLabel="line chart"
+        emptyMessage="No data yet"
+      />
+    )
+    // Nothing to scroll to, so it shrinks to its card and keeps the message centred.
+    const message = screen.getByText('No data yet')
+    expect(message.closest('svg')).toHaveStyle({ maxWidth: '100%' })
+    expect(message).toHaveAttribute('x', '50%')
+  })
+
   it('uses the default empty message when none is provided', () => {
     render(
       <RoughLine

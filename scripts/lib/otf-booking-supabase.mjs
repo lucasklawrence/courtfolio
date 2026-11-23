@@ -348,9 +348,7 @@ export async function reconcileOtfBookings(supabase, opts = {}) {
       .update(patch)
       .eq('started_at', session.started_at)
     if (error) {
-      throw new Error(
-        `Failed to reconcile otf_session ${session.started_at}: ${error.message}`
-      )
+      throw new Error(`Failed to reconcile otf_session ${session.started_at}: ${error.message}`)
     }
     if (patch.booking_id !== undefined) linked += 1
     if (patch.class_format !== undefined) formatted += 1
@@ -455,5 +453,10 @@ export async function findBookingFeedSilence(supabase, opts = {}) {
 
   const sessions = sessionCount ?? 0
   const bookings = bookingCount ?? 0
-  return { silent: sessions > 0 && bookings === 0, sessionCount: sessions, bookingCount: bookings, since }
+  return {
+    silent: sessions > 0 && bookings === 0,
+    sessionCount: sessions,
+    bookingCount: bookings,
+    since,
+  }
 }

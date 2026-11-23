@@ -36,11 +36,13 @@
     ".next/types/**/*.ts",
     ".next-e2e-default/types/**/*.ts",
     ".next-e2e-training-facility/types/**/*.ts",
+    ".next-e2e-admin/types/**/*.ts",
     "app/banners",
     "global.d.ts",
     ".next/dev/types/**/*.ts",
     ".next-e2e-default/dev/types/**/*.ts",
-    ".next-e2e-training-facility/dev/types/**/*.ts"
+    ".next-e2e-training-facility/dev/types/**/*.ts",
+    ".next-e2e-admin/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

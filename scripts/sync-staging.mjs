@@ -29,6 +29,9 @@
  * Each row is projected onto the columns staging actually has, so an unknown
  * column is dropped rather than 400-ing the whole table.
  *
+ * `--keepalive` skips the sync and makes one read against staging, so the
+ * Free-plan project never looks idle (see `keepalive()` below).
+ *
  * Requires (see scripts/README.md):
  *   PROD_SUPABASE_URL, PROD_SUPABASE_ANON_KEY   — read; anon suffices, every
  *                                                 synced table is anon-readable
@@ -50,6 +53,90 @@ const READ_PAGE = 1000
 
 /** Rows per write request — keeps bodies comfortably under the size limit. */
 const WRITE_BATCH = 500
+
+/**
+ * Network error codes that mean "the host is not there", as opposed to a slow or
+ * flaky one. A paused Supabase project has its DNS record removed, so every
+ * request to it dies in the resolver with `ENOTFOUND` — which undici reports as
+ * a bare `TypeError: fetch failed`, the only line eleven weeks of failed runs
+ * ever printed (#478).
+ */
+const UNREACHABLE_CODES = new Set(['ENOTFOUND', 'EAI_AGAIN', 'ECONNREFUSED'])
+
+/**
+ * Turn a failed request into a message that names the side, the step and the
+ * host, plus the underlying network cause when there is one.
+ *
+ * `fetch` rejects with `TypeError('fetch failed')` for every transport-level
+ * failure and hides the real reason (`ENOTFOUND`, `ECONNRESET`, a TLS error) in
+ * `err.cause`. Printing only `err.message` is how a paused staging project read
+ * as "fetch failed" for eleven weeks with nothing pointing at the cause.
+ *
+ * @param {'production' | 'staging'} side Which project the request went to.
+ * @param {string} step What the sync was doing, e.g. `read cardio_sessions @0`.
+ * @param {string} url The request URL. Only its host is printed: the path can
+ *   carry a table name, never a key, but the host is all a reader needs.
+ * @param {unknown} err What `fetch` threw.
+ * @returns {string} A one-line description, with a hint when the host doesn't
+ *   resolve.
+ */
+export function describeRequestFailure(side, step, url, err) {
+  let host = url
+  try {
+    host = new URL(url).host
+  } catch {
+    // Not a URL we can parse; print it as given rather than hide it.
+  }
+  const cause = err && typeof err === 'object' && 'cause' in err ? err.cause : undefined
+  const code =
+    cause && typeof cause === 'object' && 'code' in cause && typeof cause.code === 'string'
+      ? cause.code
+      : undefined
+  // Node's happy-eyeballs connect puts an AggregateError with an empty message
+  // on `cause` when every address fails; its inner errors carry the detail.
+  const inner =
+    cause && typeof cause === 'object' && 'errors' in cause && Array.isArray(cause.errors)
+      ? cause.errors.map(e => (e instanceof Error ? e.message : String(e))).join('; ')
+      : ''
+  const detail =
+    (cause instanceof Error && cause.message) ||
+    inner ||
+    (err instanceof Error ? err.message : String(err))
+  // Without a network code nothing was necessarily sent: a malformed header
+  // (a secret pasted with a trailing newline) rejects before any connection.
+  // Don't send the reader off checking DNS for that.
+  if (!code) return `${side} ${step}: request to ${host} failed (${detail})`
+  let message = `${side} ${step}: could not reach ${host} (${code}: ${detail})`
+  if (code && UNREACHABLE_CODES.has(code)) {
+    message +=
+      side === 'staging'
+        ? ' — the staging host does not answer. A paused Supabase project loses its DNS record:' +
+          ' check the project status in the Supabase dashboard before debugging anything else.'
+        : ' — the production host does not answer. Check PROD_SUPABASE_URL (the' +
+          ' NEXT_PUBLIC_SUPABASE_URL secret in CI) and the project status in the Supabase dashboard.'
+  }
+  return message
+}
+
+/**
+ * `fetch`, but a transport failure throws an error naming the side, step and
+ * host instead of a bare `fetch failed`. HTTP error statuses are still the
+ * caller's to handle — those arrive as a response, not a rejection.
+ *
+ * @param {'production' | 'staging'} side
+ * @param {string} step
+ * @param {string} url
+ * @param {RequestInit} [init]
+ * @returns {Promise<Response>}
+ * @throws {Error} when the request never produced a response.
+ */
+async function request(side, step, url, init) {
+  try {
+    return await fetch(url, init)
+  } catch (err) {
+    throw new Error(describeRequestFailure(side, step, url, err), { cause: err })
+  }
+}
 
 /**
  * Tables to copy, **parents before children** so foreign keys resolve
@@ -165,7 +252,7 @@ export const TABLES = [
  * @throws {Error} when the schema can't be read.
  */
 async function stagingColumns() {
-  const res = await fetch(`${STAGING_URL}/rest/v1/`, {
+  const res = await request('staging', 'read schema', `${STAGING_URL}/rest/v1/`, {
     headers: { apikey: STAGING_KEY, authorization: `Bearer ${STAGING_KEY}` },
   })
   if (!res.ok) {
@@ -181,7 +268,9 @@ async function stagingColumns() {
 
 /** One page of rows from production. */
 async function readPage(table, offset) {
-  const res = await fetch(
+  const res = await request(
+    'production',
+    `read ${table} @${offset}`,
     `${PROD_URL}/rest/v1/${table}?select=*&limit=${READ_PAGE}&offset=${offset}`,
     { headers: { apikey: PROD_KEY, authorization: `Bearer ${PROD_KEY}` } }
   )
@@ -191,22 +280,27 @@ async function readPage(table, offset) {
 
 /** Upsert a batch into staging, overwriting rows that share the conflict key. */
 async function writeBatch(table, conflict, rows) {
-  const res = await fetch(`${STAGING_URL}/rest/v1/${table}?on_conflict=${conflict}`, {
-    method: 'POST',
-    headers: {
-      apikey: STAGING_KEY,
-      authorization: `Bearer ${STAGING_KEY}`,
-      'content-type': 'application/json',
-      prefer: 'resolution=merge-duplicates,return=minimal',
-    },
-    body: JSON.stringify(rows),
-  })
+  const res = await request(
+    'staging',
+    `write ${table}`,
+    `${STAGING_URL}/rest/v1/${table}?on_conflict=${conflict}`,
+    {
+      method: 'POST',
+      headers: {
+        apikey: STAGING_KEY,
+        authorization: `Bearer ${STAGING_KEY}`,
+        'content-type': 'application/json',
+        prefer: 'resolution=merge-duplicates,return=minimal',
+      },
+      body: JSON.stringify(rows),
+    }
+  )
   if (!res.ok) throw new Error(`write ${table}: ${res.status} ${await res.text()}`)
 }
 
 /** Plain insert, no conflict resolution — for `replace` tables, post-clear. */
 async function insertBatch(table, rows) {
-  const res = await fetch(`${STAGING_URL}/rest/v1/${table}`, {
+  const res = await request('staging', `insert ${table}`, `${STAGING_URL}/rest/v1/${table}`, {
     method: 'POST',
     headers: {
       apikey: STAGING_KEY,
@@ -226,14 +320,19 @@ async function insertBatch(table, rows) {
  * true for every row, since it's the primary key.
  */
 async function clearTable(table, key) {
-  const res = await fetch(`${STAGING_URL}/rest/v1/${table}?${key}=not.is.null`, {
-    method: 'DELETE',
-    headers: {
-      apikey: STAGING_KEY,
-      authorization: `Bearer ${STAGING_KEY}`,
-      prefer: 'return=minimal',
-    },
-  })
+  const res = await request(
+    'staging',
+    `clear ${table}`,
+    `${STAGING_URL}/rest/v1/${table}?${key}=not.is.null`,
+    {
+      method: 'DELETE',
+      headers: {
+        apikey: STAGING_KEY,
+        authorization: `Bearer ${STAGING_KEY}`,
+        prefer: 'return=minimal',
+      },
+    }
+  )
   if (!res.ok) throw new Error(`clear ${table}: ${res.status} ${await res.text()}`)
 }
 
@@ -294,7 +393,84 @@ async function copyTable({ name, conflict, mode, key }, allowed) {
   return { copied, dropped: [...dropped], mode: 'upsert' }
 }
 
+/**
+ * Print a failure so it can't be missed: to stderr always, and as a GitHub
+ * Actions error annotation when running in a workflow, so the reason shows on
+ * the run's summary page instead of only deep in the step log.
+ *
+ * @param {string} message
+ * @param {string} [what] Which operation failed, for the prefix and the
+ *   annotation title. The keepalive passes its own so its failures don't read
+ *   as a failed sync.
+ */
+function reportFatal(message, what = 'staging sync') {
+  console.error(`✗ ${what}: ${message}`)
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    // Escape the way @actions/core does: the runner decodes %25, %0D and %0A
+    // in a workflow command, so a raw % in a PostgREST body would garble it.
+    const escaped = message.replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A')
+    const title = what.charAt(0).toUpperCase() + what.slice(1)
+    console.log(`::error title=${title} failed::${escaped}`)
+  }
+}
+
+/**
+ * Confirm production answers before streaming anything. Without it, an
+ * unreachable production fails every table one by one with the same error.
+ *
+ * @throws {Error} when production cannot be read.
+ */
+async function checkProduction() {
+  const url = `${PROD_URL}/rest/v1/${TABLES[0].name}?select=*&limit=1`
+  const res = await request('production', 'preflight read', url, {
+    headers: { apikey: PROD_KEY, authorization: `Bearer ${PROD_KEY}` },
+  })
+  if (!res.ok) {
+    throw new Error(`production preflight read: ${res.status} ${await res.text()}`)
+  }
+}
+
+/**
+ * One cheap read against staging, nothing else.
+ *
+ * Supabase pauses a Free-plan project after seven days without enough database
+ * activity, and a weekly sync is one day of activity a week — staging was paused
+ * on 2026-08-23, exactly seven days after the last successful sync (#478). The
+ * `staging-keepalive` workflow runs this daily so the project never looks idle.
+ * It reads through PostgREST, so it counts as real database activity.
+ *
+ * @throws {Error} when staging cannot be read.
+ */
+async function keepalive() {
+  const url = `${STAGING_URL}/rest/v1/${TABLES[0].name}?select=*&limit=1`
+  const res = await request('staging', 'keepalive read', url, {
+    headers: { apikey: STAGING_KEY, authorization: `Bearer ${STAGING_KEY}` },
+  })
+  if (!res.ok) {
+    throw new Error(`staging keepalive read: ${res.status} ${await res.text()}`)
+  }
+  console.log(`✓ staging keepalive: ${new URL(STAGING_URL).host} answered`)
+}
+
 async function main() {
+  if (process.argv.includes('--keepalive')) {
+    if (!STAGING_URL || !STAGING_KEY) {
+      reportFatal(
+        'missing STAGING_SUPABASE_URL or STAGING_SUPABASE_SECRET_KEY',
+        'staging keepalive'
+      )
+      process.exitCode = 2
+      return
+    }
+    try {
+      await keepalive()
+    } catch (err) {
+      reportFatal(err instanceof Error ? err.message : String(err), 'staging keepalive')
+      process.exitCode = 2
+    }
+    return
+  }
+
   const missing = [
     ['PROD_SUPABASE_URL', PROD_URL],
     ['PROD_SUPABASE_ANON_KEY', PROD_KEY],
@@ -304,7 +480,7 @@ async function main() {
     .filter(([, v]) => !v)
     .map(([k]) => k)
   if (missing.length > 0) {
-    console.error(`✗ staging sync: missing ${missing.join(', ')}`)
+    reportFatal(`missing ${missing.join(', ')}`)
     process.exitCode = 2
     return
   }
@@ -312,11 +488,14 @@ async function main() {
   // Refuse to run backwards. Overwriting production from staging would be
   // unrecoverable, and the two URLs are one copy-paste apart.
   if (PROD_URL === STAGING_URL) {
-    console.error('✗ staging sync: PROD and STAGING point at the same project — refusing.')
+    reportFatal('PROD and STAGING point at the same project — refusing.')
     process.exitCode = 2
     return
   }
 
+  // Both ends answer before any table is touched, so a dead host is one clear
+  // line rather than a wall of per-table failures.
+  await checkProduction()
   const schema = await stagingColumns()
   let failed = 0
   let total = 0
@@ -344,14 +523,17 @@ async function main() {
   console.log(
     `\n${failed === 0 ? '✓' : '!'} staging sync: ${total} rows across ${TABLES.length - failed}/${TABLES.length} tables.`
   )
-  if (failed > 0) process.exitCode = 1
+  if (failed > 0) {
+    reportFatal(`${failed} of ${TABLES.length} tables failed — see the ✗ lines above.`)
+    process.exitCode = 1
+  }
 }
 
 // Only when run as a script. Guarded so the table manifest can be imported and
 // asserted on without kicking off a sync as a side effect of `import`.
 if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch(err => {
-    console.error(err.message ?? err)
+    reportFatal(err instanceof Error ? err.message : String(err))
     process.exitCode = 2
   })
 }

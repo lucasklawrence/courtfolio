@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type JSX } from 'react'
 
 import { HeatmapInspector } from '@/components/training-facility/shared/charts/HeatmapInspector'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
+import { monthLabelOverhang, thinMonthLabels } from '@/lib/training-facility/heatmap-labels'
 import {
   buildHeatmapGrid,
   intensityLevel,
@@ -13,7 +14,7 @@ import type { CardioSession } from '@/types/cardio'
 
 /** Props for {@link WorkoutHeatmap}. */
 export interface WorkoutHeatmapProps {
-  /** All cardio sessions; the helper buckets them by local calendar day. */
+  /** All cardio sessions; the helper buckets them by Pacific calendar day. */
   sessions: ReadonlyArray<Pick<CardioSession, 'date' | 'activity'>>
   /** Inclusive start of the visible window. Omit for the trailing 52 weeks. */
   dateFrom?: Date | null
@@ -47,6 +48,8 @@ const MONTH_LABEL_HEIGHT = 18
 const DEFAULT_CELL_SIZE = 14
 /** Cap on the auto-scaled stride so a 1-week filter doesn't render 200px cells. */
 const MAX_CELL_SIZE = 28
+/** Font size the month labels are drawn at. */
+const MONTH_LABEL_FONT_SIZE = 11
 
 /**
  * Color palette for the four intensity levels. Indexed by the value
@@ -70,7 +73,7 @@ const CELL_COLORS = [
  *
  * Reads `dateFrom` / `dateTo` from the parent's `DateFilter` so the visible
  * window matches every other chart on the All Cardio Overview. Cells are
- * keyed by local calendar day; multiple sessions on the same day stack
+ * keyed by Pacific calendar day; multiple sessions on the same day stack
  * into higher intensity buckets via {@link intensityLevel}.
  *
  * The `<title>` per cell is the native browser tooltip that reviewers see
@@ -124,14 +127,29 @@ export function WorkoutHeatmap({
     return () => ro.disconnect()
   }, [])
 
-  const computedCellSize =
-    cellSize ??
-    (containerWidth && cols > 0
-      ? Math.min(
-          MAX_CELL_SIZE,
-          Math.max(DEFAULT_CELL_SIZE, Math.floor((containerWidth - DAY_LABEL_WIDTH) / cols))
-        )
-      : DEFAULT_CELL_SIZE)
+  // A stride fitted to `width` px of grid, kept within the default and the cap.
+  const fitCellSize = (width: number) =>
+    Math.min(MAX_CELL_SIZE, Math.max(DEFAULT_CELL_SIZE, Math.floor(width / cols)))
+  // Labels for a stride: thinned so neighbours can't collide, plus how far the last
+  // one overhangs the grid's right edge.
+  const monthLayout = (stride: number) => {
+    const months = thinMonthLabels(monthLabels, { cellSize: stride, totalCols: cols })
+    const overhang = monthLabelOverhang(months, stride, cols * stride, MONTH_LABEL_FONT_SIZE)
+    return { visibleMonths: months, monthOverhang: overhang }
+  }
+
+  let computedCellSize = DEFAULT_CELL_SIZE
+  if (cellSize !== undefined) computedCellSize = cellSize
+  else if (containerWidth && cols > 0) {
+    computedCellSize = fitCellSize(containerWidth - DAY_LABEL_WIDTH)
+    // A month starting in the last column overhangs a fitted grid, so refit with
+    // room for it rather than spilling past the card into a scrollbar.
+    const { monthOverhang } = monthLayout(computedCellSize)
+    if (monthOverhang > 0) {
+      computedCellSize = fitCellSize(containerWidth - DAY_LABEL_WIDTH - Math.ceil(monthOverhang))
+    }
+  }
+  const { visibleMonths, monthOverhang } = monthLayout(computedCellSize)
   const cellInner = computedCellSize - cellGap
   const gridWidth = cols * computedCellSize
   const gridHeight = 7 * computedCellSize
@@ -139,7 +157,10 @@ export function WorkoutHeatmap({
   // from the same cell metrics as the legend itself so the legend doesn't
   // overflow the SVG when `computedCellSize` scales up to MAX_CELL_SIZE.
   const legendWidth = 32 + 4 * (computedCellSize + 1) + 4 + 28
-  const totalWidth = DAY_LABEL_WIDTH + gridWidth
+  // A grid narrower than the legend (a one- or two-week range) widens the SVG to
+  // fit it rather than pushing "Less" off the left edge.
+  const legendX = Math.max(0, DAY_LABEL_WIDTH + gridWidth - legendWidth)
+  const totalWidth = Math.max(DAY_LABEL_WIDTH + gridWidth + monthOverhang, legendX + legendWidth)
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + 18 // +18 for the legend strip
 
   return (
@@ -153,14 +174,14 @@ export function WorkoutHeatmap({
           aria-label={ariaLabel}
           style={{ fontFamily }}
         >
-          {/* Month labels along the top */}
+          {/* Month labels along the top, thinned so neighbours can't collide */}
           <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-            {monthLabels.map(m => (
+            {visibleMonths.map(m => (
               <text
                 key={`month-${m.col}-${m.label}`}
                 x={m.col * computedCellSize}
                 y={0}
-                fontSize={11}
+                fontSize={MONTH_LABEL_FONT_SIZE}
                 fill={chartPalette.inkSoft}
               >
                 {m.label}
@@ -209,9 +230,7 @@ export function WorkoutHeatmap({
           </g>
 
           {/* Legend strip — "Less" + 4 swatches + "More" */}
-          <g
-            transform={`translate(${DAY_LABEL_WIDTH + gridWidth - legendWidth}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
-          >
+          <g transform={`translate(${legendX}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}>
             <text x={0} y={0} fontSize={10} fill={chartPalette.inkSoft}>
               Less
             </text>

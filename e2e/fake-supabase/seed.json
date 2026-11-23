@@ -1,0 +1,43 @@
+{
+  "$comment": "Synthetic Weight Room data for the admin e2e specs (#481). Never copied from production. `columns` lists each table's columns, so an insert gets null for every one it omits, like the real table defaults. Column lists mirror the whitelists in lib/data/weight-room-shared.ts.",
+  "columns": {
+    "weight_room_exercises": ["slug", "display_name", "equipment", "muscle_group", "load_multiplier", "is_unilateral", "archived", "updated_at"],
+    "weight_room_goals": ["exercise", "daily_target", "color", "kind", "updated_at"],
+    "weight_room_goal_targets": ["id", "exercise", "daily_target", "effective_from", "updated_at"],
+    "weight_room_monthly_focus": ["id", "exercise", "daily_target", "target_kind", "color", "category", "start_date", "end_date", "updated_at"],
+    "weight_room_achievements": ["id", "label", "exercise", "scope", "measure", "threshold", "color", "icon"],
+    "weight_room_workout_templates": ["id", "name", "description", "color", "category", "position", "archived"],
+    "weight_room_template_slots": ["id", "template_id", "position", "exercise", "target_sets", "target_sets_max", "target_reps", "target_reps_max", "target_weight_lbs", "rest_seconds", "notes"],
+    "weight_room_template_slot_steps": ["id", "slot_id", "position", "exercise", "target_reps", "target_weight_lbs", "notes"],
+    "weight_room_template_alternates": ["id", "slot_id", "position", "exercise"],
+    "weight_room_workouts": ["id", "started_at", "ended_at", "template_id", "prescription", "source", "avg_hr", "max_hr", "title", "location", "notes", "updated_at"],
+    "weight_room_sets": ["id", "logged_at", "exercise", "reps", "weight_lbs", "variant", "workout_id", "position", "template_slot_id", "template_slot_step_id", "source", "duration_seconds", "to_failure", "set_group", "updated_at"]
+  },
+  "tables": {
+    "weight_room_exercises": [
+      { "slug": "pushups", "display_name": "Push-ups", "equipment": "bodyweight", "muscle_group": "chest", "load_multiplier": 1, "is_unilateral": false, "archived": false, "updated_at": "2026-01-01T00:00:00Z" },
+      { "slug": "pullups", "display_name": "Pull-ups", "equipment": "bodyweight", "muscle_group": "back", "load_multiplier": 1, "is_unilateral": false, "archived": false, "updated_at": "2026-01-01T00:00:00Z" },
+      { "slug": "goblet-squat", "display_name": "Goblet Squat", "equipment": "dumbbell", "muscle_group": "legs", "load_multiplier": 1, "is_unilateral": false, "archived": false, "updated_at": "2026-01-01T00:00:00Z" }
+    ],
+    "weight_room_goals": [
+      { "exercise": "pushups", "daily_target": 100, "color": "#EA580C", "kind": "permanent", "updated_at": "2026-01-01T00:00:00Z" },
+      { "exercise": "pullups", "daily_target": 30, "color": "#2563EB", "kind": "permanent", "updated_at": "2026-01-01T00:00:00Z" }
+    ],
+    "weight_room_goal_targets": [],
+    "weight_room_monthly_focus": [],
+    "weight_room_achievements": [],
+    "weight_room_workout_templates": [
+      { "id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e01", "name": "E2E Upper Pull", "description": "Synthetic template for the admin e2e specs.", "color": "#2563EB", "category": "pull", "position": 0, "archived": false }
+    ],
+    "weight_room_template_slots": [
+      { "id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e11", "template_id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e01", "position": 0, "exercise": "pullups", "target_sets": 3, "target_sets_max": null, "target_reps": 5, "target_reps_max": null, "target_weight_lbs": null, "rest_seconds": 120, "notes": null },
+      { "id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e12", "template_id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e01", "position": 1, "exercise": "goblet-squat", "target_sets": 3, "target_sets_max": null, "target_reps": 10, "target_reps_max": null, "target_weight_lbs": 35, "rest_seconds": 90, "notes": null }
+    ],
+    "weight_room_template_slot_steps": [],
+    "weight_room_template_alternates": [],
+    "weight_room_workouts": [],
+    "weight_room_sets": [
+      { "id": "7a1f0c3e-4b2d-4e8a-9c61-0d5b2f3a1e21", "logged_at": "2026-01-02T18:00:00Z", "exercise": "pushups", "reps": 20, "weight_lbs": null, "variant": null, "workout_id": null, "position": null, "template_slot_id": null, "template_slot_step_id": null, "source": "manual", "duration_seconds": null, "to_failure": false, "set_group": null, "updated_at": "2026-01-02T18:00:00Z" }
+    ]
+  }
+}

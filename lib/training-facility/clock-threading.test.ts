@@ -23,12 +23,7 @@ import {
   summarizeFocusCampaigns,
 } from './monthly-focus'
 import { computeStrengthStreaks as computeGoalStreaks } from './strength-streaks'
-import {
-  filterSetsForDay,
-  formatDayLabel,
-  localNoonIsoForDay,
-  toLocalDateKey,
-} from './strength-today'
+import { filterSetsForDay, formatDayLabel, localNoonIsoForDay, toDayKey } from './strength-today'
 import { firstLoggedDate, heatmapWindow } from './heatmap-span'
 import {
   buildStrengthHeatmap,
@@ -175,8 +170,8 @@ describe('every zone-consuming entry point honors its clock', () => {
     dependsOnZone(clock => workoutDayKey(workout(), clock))
   })
 
-  it('toLocalDateKey', () => {
-    dependsOnZone(clock => toLocalDateKey(SPLIT_LATE, clock))
+  it('toDayKey', () => {
+    dependsOnZone(clock => toDayKey(SPLIT_LATE, clock))
   })
 
   it('filterSetsForDay', () => {
@@ -335,7 +330,7 @@ describe('the Pacific default is unchanged', () => {
     // The other half of the contract: courtfolio passes no clock anywhere, so
     // the default has to reproduce the old behavior exactly.
     expect(workoutDayKey(workout())).toBe(workoutDayKey(workout(), PACIFIC_CLOCK))
-    expect(toLocalDateKey(SPLIT_LATE)).toBe(toLocalDateKey(SPLIT_LATE, PACIFIC_CLOCK))
+    expect(toDayKey(SPLIT_LATE)).toBe(toDayKey(SPLIT_LATE, PACIFIC_CLOCK))
     expect(formatDayLabel('2026-07-14')).toBe(formatDayLabel('2026-07-14', PACIFIC_CLOCK))
     expect(JSON.stringify(computeStrengthStats(SETS, [GOAL], NOW))).toBe(
       JSON.stringify(computeStrengthStats(SETS, [GOAL], NOW, [], PACIFIC_CLOCK))

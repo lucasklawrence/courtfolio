@@ -17,7 +17,7 @@ import {
   filterSetsForDay,
   formatDayLabel,
   localNoonIsoForDay,
-  toLocalDateKey,
+  toDayKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
 import type {
@@ -63,8 +63,11 @@ import {
  *
  * Mirrors the write orchestration the previous Today-view island used:
  * busy flag lifts up to disable delete + log in flight, and a
- * monotonic request id keeps a slow mount fetch from clobbering fresh
- * post-write data.
+ * monotonic request id keeps an older read from clobbering a newer one.
+ * The id guards `refetch` as well as the mount read because `busy` does
+ * not serialise every writer: the live workout panel keeps its own busy
+ * flag, so a quick-log tap can start a second refetch while the panel's
+ * is still in flight, and whichever read resolves last would otherwise win.
  */
 /** Props for {@link LogDataIsland}. */
 export interface LogDataIslandProps {
@@ -86,7 +89,7 @@ export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.
   // Day the whole view is pointed at (#202) — rings, totals, SetList,
   // and the `logged_at` of newly logged sets all follow this key. Lazy
   // initializer so "today" is computed once at mount, not every render.
-  const [selectedDay, setSelectedDay] = useState<string>(() => toLocalDateKey(new Date()))
+  const [selectedDay, setSelectedDay] = useState<string>(() => toDayKey(new Date()))
   const requestIdRef = useRef(0)
 
   useEffect(() => {
@@ -151,7 +154,7 @@ export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.
     imported_at: '',
     monthly_focus: [],
   }
-  const todayKey = toLocalDateKey(new Date())
+  const todayKey = toDayKey(new Date())
   // Pickers offer live movements and templates only; archived ones stay
   // rendered wherever they're already referenced, they just aren't selectable.
   const activeExercises = (surfaceData.exercises ?? []).filter(e => e.archived !== true)
@@ -279,7 +282,7 @@ export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.
                 // same-day logs omit logged_at so the API keeps its now()
                 // default (real time-of-day on the set row). `|| undefined`
                 // guards the '' unparseable-key fallback.
-                const isBackfillAtTap = selectedDay !== toLocalDateKey(new Date())
+                const isBackfillAtTap = selectedDay !== toDayKey(new Date())
                 return logSet(
                   exercise,
                   reps,
