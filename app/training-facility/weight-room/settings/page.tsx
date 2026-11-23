@@ -20,6 +20,14 @@ import {
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
+ * Stands in for the main dataset when its read throws, so the page can tell a
+ * failed read apart from the legitimate `null` the reader returns for an empty
+ * log. The monthly-focus editor needs the difference: an empty list there
+ * invites re-creating focuses that do exist.
+ */
+const DATA_READ_FAILED: unique symbol = Symbol('weight-room data read failed')
+
+/**
  * Weight Room settings page (#79). Admin-only — non-admins get a 404
  * via `notFound()` so the route doesn't even hint at its existence to
  * unauthenticated viewers.
@@ -42,15 +50,18 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   // as an empty editor instead of 500ing the whole page. The Settings
   // UI handles `goals: []` gracefully (renders the add-exercise form
   // without an existing-goal table). The achievement ladder read (#336)
-  // degrades independently — a failed fetch just empties that editor.
+  // degrades independently — a failed fetch just empties that editor. The
+  // monthly-focus editor is told the read failed instead of shown as empty.
   const [data, achievements, exercises, templates] = await Promise.all([
-    getWeightRoomDataServer().catch(() => null),
+    getWeightRoomDataServer().catch((): typeof DATA_READ_FAILED => DATA_READ_FAILED),
     getWeightRoomAchievementsServer().catch(() => []),
     getWeightRoomExercisesServer().catch(() => []),
     getWorkoutTemplatesServer().catch(() => []),
   ])
-  const goals = data?.goals ?? []
-  const focuses = data?.monthly_focus ?? []
+  const dataReadFailed = data === DATA_READ_FAILED
+  const weightRoom = dataReadFailed ? null : data
+  const goals = weightRoom?.goals ?? []
+  const focuses = weightRoom?.monthly_focus ?? []
   // Pickers offer live movements only; an archived one stays rendered wherever
   // it's already referenced, it just isn't selectable for something new.
   const activeExercises = exercises.filter(exercise => exercise.archived !== true)
@@ -96,7 +107,11 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             appears in the Up Next strip until its start date.
           </p>
           <div className="mt-6">
-            <MonthlyFocusSettings initialFocuses={focuses} exercises={activeExercises} />
+            <MonthlyFocusSettings
+              initialFocuses={focuses}
+              exercises={activeExercises}
+              loadFailed={dataReadFailed}
+            />
           </div>
         </section>
 

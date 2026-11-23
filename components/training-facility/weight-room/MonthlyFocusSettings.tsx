@@ -6,7 +6,10 @@ import { useState, useTransition, type FormEvent, type JSX } from 'react'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 import { formatFocusWindow } from '@/lib/training-facility/monthly-focus'
-import { WeightRoomMonthlyFocusCreateSchema } from '@/lib/schemas/weight-room'
+import {
+  WeightRoomMonthlyFocusCreateSchema,
+  type WeightRoomMonthlyFocusCreate,
+} from '@/lib/schemas/weight-room'
 import type {
   ExerciseMuscleGroup,
   FocusCategory,
@@ -34,6 +37,13 @@ export interface MonthlyFocusSettingsProps {
    * past split. Defaults to the real time.
    */
   now?: Date
+  /**
+   * The server read failed, so {@link initialFocuses} is empty for lack of
+   * data rather than because nothing is configured. Shows a load error in
+   * place of the lists so an outage can't be mistaken for "no focuses" and
+   * re-created as duplicates. Defaults to `false`.
+   */
+  loadFailed?: boolean
 }
 
 const DEFAULT_COLOR = '#C9A268'
@@ -55,6 +65,36 @@ const LOWER_BODY_GROUPS: ReadonlySet<ExerciseMuscleGroup> = new Set(['legs'])
  */
 function defaultCategory(exercise: WeightRoomExercise | undefined): FocusCategory {
   return exercise !== undefined && LOWER_BODY_GROUPS.has(exercise.muscle_group) ? 'lower' : 'upper'
+}
+
+/**
+ * A focus's window as a short label, with the year appended when the window
+ * doesn't fall in the current year, so two Julys in the Past list (and in
+ * their delete confirm / accessible name) stay distinguishable.
+ */
+function windowLabel(focus: MonthlyFocus, today: string): string {
+  const year = today.slice(0, 4)
+  const span = formatFocusWindow(focus)
+  if (focus.start_date.startsWith(year) && focus.end_date.startsWith(year)) return span
+  const startYear = focus.start_date.slice(0, 4)
+  const endYear = focus.end_date.slice(0, 4)
+  return startYear === endYear ? `${span}, ${startYear}` : `${span} (${startYear}–${endYear})`
+}
+
+/**
+ * Focuses in `category` whose window shares at least one day with
+ * `[start, end]`. The board shows only the later-started focus per lane on a
+ * given day, so an overlap silently hides the other one's ring.
+ */
+function overlappingFocuses(
+  focuses: readonly MonthlyFocus[],
+  category: FocusCategory,
+  start: string,
+  end: string
+): MonthlyFocus[] {
+  return focuses.filter(
+    focus => focus.category === category && focus.start_date <= end && start <= focus.end_date
+  )
 }
 
 /** Focuses split by where their window sits relative to today. */
@@ -91,7 +131,7 @@ function bucketFocuses(focuses: readonly MonthlyFocus[], today: string): FocusBu
 }
 
 /**
- * Admin-only editor for "grease the groove" monthly focuses (#255, #384).
+ * Admin-only editor for "grease the groove" monthly focuses.
  * Lists every focus as active / upcoming / past and offers a form to queue a
  * new one, posting to `/api/admin/weight-room/monthly-focus` and deleting
  * through its `[id]` route. On success the page's server data refreshes via
@@ -105,10 +145,15 @@ export function MonthlyFocusSettings({
   initialFocuses,
   exercises,
   now,
+  loadFailed = false,
 }: MonthlyFocusSettingsProps): JSX.Element {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
+  // Covers the request itself; `isPending` only covers the refresh after it.
+  // Without both, a double-click posts the same focus twice.
+  const [submitting, setSubmitting] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const busy = submitting || isPending
 
   const today = pacificDayKey(now ?? new Date())
   const { active, upcoming, past } = bucketFocuses(initialFocuses, today)
@@ -119,39 +164,68 @@ export function MonthlyFocusSettings({
     })
   }
 
-  /** @returns whether the focus was created, so the form keeps its input on failure. */
-  async function createFocus(payload: unknown): Promise<boolean> {
+  /**
+   * Run one admin request with the busy flag held and every failure mode,
+   * including a rejected `fetch`, turned into the error banner.
+   *
+   * @returns whether the request succeeded.
+   */
+  async function send(url: string, init: RequestInit, failure: string): Promise<boolean> {
     setError(null)
-    const res = await fetch('/api/admin/weight-room/monthly-focus', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    if (!res.ok) {
-      const body = (await res.json().catch(() => ({}))) as { error?: string }
-      setError(body.error ?? `Save failed (${res.status})`)
+    setSubmitting(true)
+    try {
+      const res = await fetch(url, init)
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        setError(body.error ?? `${failure} (${res.status})`)
+        return false
+      }
+      refresh()
+      return true
+    } catch {
+      setError(`${failure}: couldn't reach the server. Check your connection and try again.`)
       return false
+    } finally {
+      setSubmitting(false)
     }
-    refresh()
-    return true
+  }
+
+  /** @returns whether the focus was created, so the form keeps its input on failure. */
+  async function createFocus(payload: MonthlyFocusDraft): Promise<boolean> {
+    const clashes = overlappingFocuses(
+      initialFocuses,
+      payload.category,
+      payload.start_date,
+      payload.end_date
+    )
+    if (clashes.length > 0) {
+      const names = clashes.map(f => `${exerciseLabel(f)} (${windowLabel(f, today)})`).join(', ')
+      const ok = window.confirm(
+        `This overlaps ${names} in the ${payload.category}-body lane. The board shows one focus per lane, the one that started last, so the other's ring disappears while both run. Add it anyway?`
+      )
+      if (!ok) return false
+    }
+    return send(
+      '/api/admin/weight-room/monthly-focus',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      },
+      'Save failed'
+    )
   }
 
   async function deleteFocus(focus: MonthlyFocus): Promise<void> {
-    setError(null)
-    const label = exerciseLabel(focus)
     const ok = window.confirm(
-      `Remove the ${label} focus (${formatFocusWindow(focus)})? Its logged sets and daily goal are kept; it just leaves the rotation and its campaign history.`
+      `Remove the ${exerciseLabel(focus)} focus (${windowLabel(focus, today)})? Its logged sets and daily goal are kept; it just leaves the rotation and its campaign history.`
     )
     if (!ok) return
-    const res = await fetch(`/api/admin/weight-room/monthly-focus/${encodeURIComponent(focus.id)}`, {
-      method: 'DELETE',
-    })
-    if (!res.ok) {
-      const body = (await res.json().catch(() => ({}))) as { error?: string }
-      setError(body.error ?? `Delete failed (${res.status})`)
-      return
-    }
-    refresh()
+    await send(
+      `/api/admin/weight-room/monthly-focus/${encodeURIComponent(focus.id)}`,
+      { method: 'DELETE' },
+      'Delete failed'
+    )
   }
 
   return (
@@ -165,27 +239,42 @@ export function MonthlyFocusSettings({
         </p>
       ) : null}
 
-      <FocusList
-        title="Active"
-        emptyText="No focus running today."
-        focuses={active}
-        disabled={isPending}
-        onDelete={deleteFocus}
-      />
-      <FocusList
-        title="Upcoming"
-        emptyText="Nothing queued — add a focus below."
-        focuses={upcoming}
-        disabled={isPending}
-        onDelete={deleteFocus}
-      />
-      <FocusList
-        title="Past"
-        emptyText="No finished focuses yet."
-        focuses={past}
-        disabled={isPending}
-        onDelete={deleteFocus}
-      />
+      {loadFailed ? (
+        <p
+          role="status"
+          className="rounded border border-amber-300/30 bg-amber-950/30 px-3 py-2 font-mono text-[12px] text-amber-100"
+        >
+          Couldn&rsquo;t load the current focuses. Reload before adding one, so you don&rsquo;t
+          queue a duplicate.
+        </p>
+      ) : (
+        <>
+          <FocusList
+            title="Active"
+            emptyText="No focus running today."
+            focuses={active}
+            today={today}
+            disabled={busy}
+            onDelete={deleteFocus}
+          />
+          <FocusList
+            title="Upcoming"
+            emptyText="Nothing queued — add a focus below."
+            focuses={upcoming}
+            today={today}
+            disabled={busy}
+            onDelete={deleteFocus}
+          />
+          <FocusList
+            title="Past"
+            emptyText="No finished focuses yet."
+            focuses={past}
+            today={today}
+            disabled={busy}
+            onDelete={deleteFocus}
+          />
+        </>
+      )}
 
       <section aria-labelledby="monthly-focus-add-heading">
         <h3
@@ -194,26 +283,33 @@ export function MonthlyFocusSettings({
         >
           Add focus
         </h3>
-        <AddFocusForm
-          exercises={exercises}
-          today={today}
-          disabled={isPending}
-          onAdd={createFocus}
-        />
+        <AddFocusForm exercises={exercises} today={today} disabled={busy} onAdd={createFocus} />
       </section>
     </div>
   )
 }
 
+/** A validated create payload, as the admin route accepts it. */
+type MonthlyFocusDraft = WeightRoomMonthlyFocusCreate
+
 interface FocusListProps {
   title: string
   emptyText: string
   focuses: readonly MonthlyFocus[]
+  /** Pacific `YYYY-MM-DD` key, for deciding when a window needs its year. */
+  today: string
   disabled: boolean
   onDelete: (focus: MonthlyFocus) => Promise<void>
 }
 
-function FocusList({ title, emptyText, focuses, disabled, onDelete }: FocusListProps): JSX.Element {
+function FocusList({
+  title,
+  emptyText,
+  focuses,
+  today,
+  disabled,
+  onDelete,
+}: FocusListProps): JSX.Element {
   const headingId = `monthly-focus-${title.toLowerCase()}-heading`
   return (
     <section aria-labelledby={headingId}>
@@ -229,7 +325,7 @@ function FocusList({ title, emptyText, focuses, disabled, onDelete }: FocusListP
         <ul className="mt-3 space-y-3">
           {focuses.map(focus => {
             const label = exerciseLabel(focus)
-            const span = formatFocusWindow(focus)
+            const span = windowLabel(focus, today)
             return (
               <li
                 key={focus.id}
@@ -250,9 +346,7 @@ function FocusList({ title, emptyText, focuses, disabled, onDelete }: FocusListP
                 <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/55">
                   {focus.category}
                 </span>
-                <span className="font-mono text-xs text-white/55">
-                  <time dateTime={focus.start_date}>{span}</time>
-                </span>
+                <span className="font-mono text-xs text-white/55">{span}</span>
                 <button
                   type="button"
                   disabled={disabled}
@@ -276,7 +370,7 @@ interface AddFocusFormProps {
   /** Pacific `YYYY-MM-DD` key, the default start date. */
   today: string
   disabled: boolean
-  onAdd: (payload: unknown) => Promise<boolean>
+  onAdd: (payload: MonthlyFocusDraft) => Promise<boolean>
 }
 
 function AddFocusForm({ exercises, today, disabled, onAdd }: AddFocusFormProps): JSX.Element {
