@@ -14,7 +14,9 @@
        `node_modules` exists.
 
        Normally a directory junction to the main checkout's `node_modules` is
-       enough, and costs no disk. But when the branch changes `package.json`
+       enough, and costs no disk. (Turbopack follows it because
+       `next.config.ts` widens its workspace root to the main checkout when
+       `node_modules` is a link -- see scripts/README.md, #493.) But when the branch changes `package.json`
        or `package-lock.json`, sharing is wrong twice over: the suite would run
        against a tree that doesn't match the branch, and `npm install` here
        writes THROUGH the junction into the main checkout's `node_modules`,

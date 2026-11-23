@@ -16,6 +16,16 @@ scripts/worktree-init.ps1`** — a bare worktree has no `node_modules` and no
 `.env.local`, so without it ~22 test files fail on `server-only` and every
 Supabase script fails on missing env. See `scripts/README.md`.
 
+By default the bootstrap links `node_modules` to the main checkout's install with
+a junction. `next dev`, `next build` and `npm run test:e2e` work on that link:
+`next.config.ts` detects it and widens Turbopack's workspace root to the main
+checkout, which Turbopack needs before it will read files through the link
+(#493). The widening only applies where `node_modules` is a link, so Vercel and
+CI builds are unchanged. If Turbopack ever reports *"Could not find the Next.js
+package"* in a worktree, check that the worktree sits under the main checkout
+(`.claude/worktrees/<slug>`). A worktree outside it can't share the install, so
+give it a real one with `-Isolate`.
+
 **Never run `npm install` in a worktree whose `node_modules` is a junction** —
 it writes through the link into the main checkout's install and every other
 worktree sharing it. The bootstrap avoids this by giving dependency-changing

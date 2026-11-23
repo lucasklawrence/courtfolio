@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import type { NextConfig } from 'next'
 
 /**
@@ -32,8 +34,41 @@ const contentSecurityPolicyReportOnly = [
  */
 const distDir = process.env.NEXT_DIST_DIR || '.next'
 
+/**
+ * Workspace root for a git worktree whose `node_modules` is a junction to the
+ * main checkout's install, or `undefined` everywhere else.
+ *
+ * `scripts/worktree-init.ps1` links a worktree's `node_modules` to the main
+ * checkout's. Turbopack refuses to read files outside its workspace root, which
+ * it infers as the directory holding the nearest lockfile, so it cannot follow
+ * that link and fails with "Could not find the Next.js package". Worktrees live
+ * under the main checkout (`.claude/worktrees/<slug>`), so widening the root to
+ * the directory the link resolves into puts both trees inside it.
+ *
+ * Keyed on the link itself rather than on an env var or a path pattern, so it
+ * can only ever change anything where a linked install exists: Vercel and CI
+ * install a real `node_modules` and get the default root.
+ *
+ * @param cwd Project directory to inspect; defaults to where Next was started.
+ */
+export function linkedWorktreeRoot(cwd: string = process.cwd()): string | undefined {
+  const modules = path.join(cwd, 'node_modules')
+  try {
+    if (!fs.lstatSync(modules).isSymbolicLink()) return undefined
+    return path.dirname(fs.realpathSync(modules))
+  } catch {
+    return undefined
+  }
+}
+
+const workspaceRoot = linkedWorktreeRoot()
+
 const nextConfig: NextConfig = {
   distDir,
+  ...(workspaceRoot && {
+    turbopack: { root: workspaceRoot },
+    outputFileTracingRoot: workspaceRoot,
+  }),
   /**
    * Applies baseline security response headers to every route in the
    * app, including public assets and App Router pages.
