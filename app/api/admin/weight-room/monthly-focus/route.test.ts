@@ -8,7 +8,7 @@ import { POST } from './route'
  * + Supabase service-role client are mocked. The route provisions the
  * movement catalog (an `.upsert()` on `weight_room_exercises`), then makes
  * one `create_weight_room_monthly_focus` RPC that anchors the goal and
- * inserts the focus in a single transaction (#384).
+ * inserts the focus in a single transaction.
  */
 
 const requireAdminMock = vi.fn()

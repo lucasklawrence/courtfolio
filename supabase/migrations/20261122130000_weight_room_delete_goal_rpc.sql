@@ -13,17 +13,17 @@
 -- enough anyway: under READ COMMITTED it reads focuses as of its own snapshot,
 -- and the focus POST's anchor step has already run by the time its insert
 -- arrives. So each write becomes one function, and both start by locking the
--- same row: the movement's `weight_room_exercises` row, `for update`. Every
--- goal and every focus FKs that row, so it's the natural per-movement mutex.
+-- same row: the movement's `weight_room_exercises` row, `for no key update`.
+-- Every goal and every focus FKs that row, so it's the natural per-movement
+-- mutex. Two `for no key update` locks on one row conflict, so the functions
+-- serialise against each other. They don't conflict with the `for key share`
+-- an FK check takes, so logging a set for the movement never waits on them.
 -- With both functions holding it, the two orders are:
 --   - create first: the delete waits, then its check (a new statement, so a new
 --     snapshot) sees the committed focus and returns `blocked`;
 --   - delete first: the create waits, then its anchor insert finds the goal
 --     gone and inserts a fresh `kind: 'focus'` anchor, so the focus still gets
 --     a ring.
--- The lock spans one small transaction. Set inserts for that movement take
--- `for key share` on the same row for their FK check, so they wait at most
--- that long.
 --
 -- delete_weight_room_goal(p_exercise, p_today) returns jsonb, so the route can
 -- keep its three outcomes distinct:
@@ -31,6 +31,8 @@
 --   {"status":"not_found"}                        -> 404, no goal for the slug
 --   {"status":"deleted","goal":{...row...}}       -> 200, the removed row
 -- `blocked` is checked before `not_found`, the same precedence as before.
+-- `end_date` is the latest end among the live and queued focuses, the day after
+-- which the delete will actually succeed, not just the first one in the way.
 -- `p_today` is the caller's Pacific day key (`pacificDayKey`), not
 -- `current_date`, so "live" means the same thing as on every surface that
 -- renders the rotation. Only windows ending on or after it block: a finished
@@ -65,15 +67,13 @@ begin
   perform 1
   from public.weight_room_exercises e
   where e.slug = p_exercise
-  for update;
+  for no key update;
 
-  select f.end_date
+  select max(f.end_date)
   into v_blocking_end
   from public.weight_room_monthly_focus f
   where f.exercise = p_exercise
-    and f.end_date >= p_today
-  order by f.start_date
-  limit 1;
+    and f.end_date >= p_today;
 
   if v_blocking_end is not null then
     return jsonb_build_object('status', 'blocked', 'end_date', v_blocking_end);
@@ -92,7 +92,7 @@ end;
 $function$;
 
 comment on function public.delete_weight_room_goal(text, date) is
-  'Delete a Weight Room daily goal unless an active or upcoming monthly focus (end_date >= p_today) still depends on it, in one transaction. Locks the movement''s weight_room_exercises row FOR UPDATE first, the same mutex create_weight_room_monthly_focus takes, so a focus cannot be created between the check and the delete. Returns {"status":"blocked","end_date"} | {"status":"not_found"} | {"status":"deleted","goal"}. Service-role only; called by DELETE /api/admin/weight-room/goals/[exercise] (#384).';
+  'Delete a Weight Room daily goal unless an active or upcoming monthly focus (end_date >= p_today) still depends on it, in one transaction. Locks the movement''s weight_room_exercises row FOR NO KEY UPDATE first, the same mutex create_weight_room_monthly_focus takes, so a focus cannot be created between the check and the delete. Returns {"status":"blocked","end_date" (latest live end)} | {"status":"not_found"} | {"status":"deleted","goal"}. Service-role only; called by DELETE /api/admin/weight-room/goals/[exercise] (#384).';
 
 revoke all on function public.delete_weight_room_goal(text, date) from public, anon, authenticated;
 grant execute on function public.delete_weight_room_goal(text, date) to service_role;
@@ -118,7 +118,7 @@ begin
   perform 1
   from public.weight_room_exercises e
   where e.slug = p_exercise
-  for update;
+  for no key update;
 
   insert into public.weight_room_goals (exercise, daily_target, color, kind, updated_at)
   values (p_exercise, p_daily_target, p_color, 'focus', now())
@@ -137,7 +137,7 @@ end;
 $function$;
 
 comment on function public.create_weight_room_monthly_focus(text, integer, text, text, text, date, date) is
-  'Create a monthly focus and, if the movement has no daily goal yet, its kind=focus goal anchor, in one transaction. Locks the movement''s weight_room_exercises row FOR UPDATE first, the same mutex delete_weight_room_goal takes, so the goal cannot be deleted between the anchor and the focus insert. Returns the inserted focus row. Service-role only; called by POST /api/admin/weight-room/monthly-focus (#384).';
+  'Create a monthly focus and, if the movement has no daily goal yet, its kind=focus goal anchor, in one transaction. Locks the movement''s weight_room_exercises row FOR NO KEY UPDATE first, the same mutex delete_weight_room_goal takes, so the goal cannot be deleted between the anchor and the focus insert. Returns the inserted focus row. Service-role only; called by POST /api/admin/weight-room/monthly-focus (#384).';
 
 revoke all on function public.create_weight_room_monthly_focus(text, integer, text, text, text, date, date) from public, anon, authenticated;
 grant execute on function public.create_weight_room_monthly_focus(text, integer, text, text, text, date, date) to service_role;

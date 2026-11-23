@@ -8,7 +8,7 @@ import { DELETE } from './route'
  * Supabase service-role client are mocked; the route's own logic
  * (empty-segment guard, mapping the `delete_weight_room_goal` outcome onto
  * 200 / 404 / 409, trimmed lookup) is exercised in isolation. The guard and
- * the delete themselves run inside that one RPC (#384) — the SQL is the
+ * the delete themselves run inside that one RPC — the SQL is the
  * migration's to get right; these pin the contract the route relies on.
  *
  * Next.js App Router decodes path segments before invoking the handler, so

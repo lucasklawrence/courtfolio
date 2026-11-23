@@ -12,7 +12,7 @@
  * rollup reuse existing machinery; `on conflict do nothing` never clobbers a
  * permanent goal) and then the focus row. It shares a per-movement lock with
  * the goal DELETE's `delete_weight_room_goal`, so a goal can't be deleted
- * between the anchor and the insert and leave the focus without its ring (#384).
+ * between the anchor and the insert and leave the focus without its ring.
  *
  * Pair with `[id]/route.ts` for DELETE.
  */
