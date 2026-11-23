@@ -325,6 +325,59 @@ Test fixtures are synthetic for the same reason.
 category, top venue, cities, busiest month, free-ticket rate and cost figures
 for life's Wrapped builder. Service role only.
 
+## Scheduled-job alerts: `ingest-alert.mjs` and `record-ingest-run.mjs`
+
+Unattended crons write to production with nobody watching. Red runs have gone unnoticed twice: three OTF sessions for 20 days (#334), and the staging sync for eleven weeks (#478). GitHub's "Run failed" emails were delivered both times. They just didn't get acted on. #456 adds two pieces.
+
+### Failures become one issue per job
+
+`otbeat-ingest`, `events-ingest`, `staging-sync` and `staging-keepalive` each end with an `alert` job. It runs `if: always()` after the work job, through the `.github/actions/ingest-alert` composite.
+
+| work job result | open `ingest failure: <job>` issue? | what happens |
+|---|---|---|
+| failure / cancelled | no | file it, labelled `ingest-failure`, with the run link, failed step and log tail |
+| failure / cancelled | yes | comment on it. A week of red days is one issue with seven comments |
+| success | yes | comment "recovered" and close it |
+| success / skipped | no | nothing |
+| skipped | yes | nothing; the alert stays open |
+
+- Open alerts are found by **listing** issues with the label, not through the search API. Search is eventually consistent, so it can miss an issue filed a minute earlier and cause a duplicate.
+- The `alert` job holds `issues: write` and `actions: read` (for the log tail). The work job keeps `contents: read` and is the only job with production credentials. A cancelled run also alerts, because a timeout reports as `cancelled`.
+- Only runs of `main` report. A manual run from a feature branch, or an events dry run, never files, comments on, or closes an alert.
+- To add a cron: copy the `alert` job, then set `job:` to a stable key and `needs:` to the work job.
+
+### Heartbeat: the run that never happens
+
+No workflow step can fire when GitHub never starts the run. That happens when schedules are disabled after 60 days of repo inactivity, when a scheduled run is dropped under load, or when a valid cron expression never matches. So the daily ingests write a heartbeat as their **last** step:
+
+```
+node scripts/record-ingest-run.mjs <job>   # one row in public.ingest_runs
+```
+
+`ingest_runs` (`supabase/migrations/20261122120000_ingest_runs.sql`) has RLS on, no policies, and no anon/authenticated privileges. Only the service role writes to it. Alert on *"the job ran"*, never on *"data arrived"*. OTF attendance is a few classes a week, so a data-freshness alert would either fire on every quiet stretch or be too loose to catch real breakage.
+
+The watcher has to sit **outside GitHub Actions**, and that half is manual console setup (owner steps on #456):
+
+1. Create a read-only role in production. Pick the password yourself; never commit it.
+   ```sql
+   create role grafana_ro login password '<choose one>';
+   grant usage on schema public to grafana_ro;
+   grant select on public.ingest_runs to grafana_ro;
+   -- RLS is on with no policies, and a grant alone doesn't get past RLS:
+   -- without this policy every query returns no rows.
+   create policy ingest_runs_grafana_read on public.ingest_runs
+     for select to grafana_ro using (true);
+   ```
+2. In **Grafana Cloud** (not a local instance: a laptop that sleeps is a worse failure domain than GitHub), add a PostgreSQL data source. Use the **Supavisor session-mode pooler** connection string from Supabase → Connect, because direct Postgres is IPv6-only. User `grafana_ro.<project-ref>`, SSL required.
+3. Add an alert rule that fires when this exceeds **26**. The extra 2 hours over a day absorb GitHub's schedule jitter. Point it at an email contact point.
+   ```sql
+   -- coalesce: with no rows at all (a typo in the job name, a table that was
+   -- never written) max() is NULL, and NULL > 26 never fires.
+   select extract(epoch from now() - coalesce(max(ran_at), 'epoch')) / 3600 as hours_since_last_run
+   from public.ingest_runs where job = 'otbeat-ingest'
+   ```
+4. Test it: pause the heartbeat step (or point the rule at a job name that has no rows) and confirm the alert fires.
+
 ## `migrations:check`
 
 `npm run migrations:check`

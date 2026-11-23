@@ -1,0 +1,39 @@
+name: Ingest alert
+description: >-
+  Turn a scheduled job's result into a GitHub issue (#456). On failure, files
+  `ingest failure: <job>` with the run link, failed step and log tail, or
+  comments on that issue if it is already open, so a job failing daily produces
+  one issue, not one per day. On success, closes an open alert as recovered.
+  Logic and tests live in scripts/ingest-alert.mjs. Use it from a separate
+  `alert` job that `needs:` the work job and runs `if: always()`, with
+  `issues: write` and `actions: read` granted to that job only, never to the
+  job holding production credentials. The workflow must check out the repo
+  first; a local composite action isn't on disk until it does.
+
+inputs:
+  job:
+    description: Stable job key used in the issue title, e.g. otbeat-ingest.
+    required: true
+  result:
+    description: The work job's result, i.e. needs.<job>.result.
+    required: true
+  token:
+    description: Token with issues:write and actions:read (pass github.token).
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # No `npm ci`: the script uses only Node built-ins.
+    - name: Set up Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version-file: .nvmrc
+
+    - name: File, update or close the alert issue
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        ALERT_JOB: ${{ inputs.job }}
+        JOB_RESULT: ${{ inputs.result }}
+      run: node scripts/ingest-alert.mjs
